@@ -1,0 +1,4 @@
+.gitmodules
+*.swp
+
+.DS_Store
