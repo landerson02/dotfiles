@@ -13,8 +13,8 @@ return {
     end
 
     -- Next/prev buffer
-    map('n', '<leader>l', '<cmd>BufferNext<CR>', opts)
-    map('n', '<leader>h', '<cmd>BufferPrevious<CR>', opts)
+    map('n', '<leader>i', '<cmd>BufferNext<CR>', opts)
+    map('n', '<leader>o', '<cmd>BufferPrevious<CR>', opts)
 
     -- Close buffer
     map('n', '<leader>x', '<cmd>BufferClose<CR>', opts)
