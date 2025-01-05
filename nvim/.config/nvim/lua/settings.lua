@@ -90,5 +90,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- CursorHold faster
+-- Cursor Hold faster
 vim.opt.updatetime = 200
+
+-- Copy keybinds
+vim.keymap.set('n', 'yc', 'yygcc', { remap = true, desc = 'Copy and comment line' })
