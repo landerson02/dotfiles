@@ -1,0 +1,19 @@
+theme = catppuccin-mocha
+
+font-family  = FiraCode Nerd Font Mono
+
+# cursor-invert-fg-bg
+
+mouse-hide-while-typing
+
+# background = 222222
+
+background-opacity = 0.7
+background-blur-radius = 15
+
+copy-on-select = true
+
+macos-titlebar-style = hidden
+
+macos-window-shadow = false
+
