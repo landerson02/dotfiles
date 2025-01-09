@@ -1,5 +1,7 @@
-.gitmodules
-*.swp
-
+**/*.swp
+**/*.bak
 .DS_Store
-nvim.bak
+
+# nvim
+nvim/.config/nvim/lazy-lock.json
+
