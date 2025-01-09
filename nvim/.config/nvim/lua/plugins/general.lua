@@ -4,15 +4,31 @@ return {
 
   {
     'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
+    config = function()
+      local opts = {
+        signs = {
+          add = { text = '+' },
+          change = { text = '~' },
+          delete = { text = '_' },
+          topdelete = { text = '‾' },
+          changedelete = { text = '~' },
+        },
+      }
+      local gs = require('gitsigns')
+      gs.setup(opts)
+
+      vim.keymap.set('n', '<leader>gn', function()
+        gs.nav_hunk('next')
+      end, { desc = 'Next Hunk' })
+
+      vim.keymap.set('n', '<leader>gp', function()
+        gs.nav_hunk('prev')
+      end, { desc = 'Prev Hunk' })
+
+      vim.keymap.set('n', '<leader>gd', function()
+        gs.diffthis()
+      end, { desc = 'Diff this file' })
+    end,
   },
 
   {
@@ -29,20 +45,24 @@ return {
         date_format = '%m-%d-%Y',
       })
 
-      vim.keymap.set('n', '<leader>b', function()
+      vim.keymap.set('n', '<leader>gb', function()
         vim.cmd('BlameToggle')
       end, { desc = 'Toggle [B]lame' })
     end,
   },
 
   {
-    'MeanderingProgrammer/render-markdown.nvim',
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    -- -@module 'render-markdown'
-    -- -@type render.md.UserConfig
-    opts = {},
+    'OXY2DEV/markview.nvim',
+    lazy = false,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('markview').setup({
+        hybrid_modes = { 'n' },
+      })
+    end,
   },
 
   {
@@ -62,5 +82,10 @@ return {
       { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
+  },
+
+  {
+    'wakatime/vim-wakatime',
+    lazy = false,
   },
 }

@@ -11,9 +11,10 @@ return {
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
-      -- TODO: check if this works while commented
-      -- javascript = { { 'prettierd', 'prettier' } },
-      -- typescript = { { 'prettierd', 'prettier' } },
+      javascript = { 'prettier' },
+      typescript = { 'prettier' },
+      javascriptreact = { 'prettier' },
+      typescriptreact = { 'prettier' },
       python = { 'isort', 'black' },
     },
   },

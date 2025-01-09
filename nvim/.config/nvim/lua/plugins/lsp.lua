@@ -26,20 +26,18 @@ return {
         callback = function(event)
           local map = function(keys, func, desc, mode)
             mode = mode or 'n'
-            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc })
+            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = desc, remap = true })
           end
 
-          map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+          local builtin = require('telescope.builtin')
+
+          map('gd', builtin.lsp_definitions, '[G]oto [D]efinition')
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-          map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-          map('<leader>fs', require('telescope.builtin').lsp_document_symbols, '[F]ind [S]ymbols')
-          map(
-            '<leader>fw',
-            require('telescope.builtin').lsp_dynamic_workspace_symbols,
-            '[F]ind in [W]orkspace'
-          )
+          map('gr', builtin.lsp_references, '[G]oto [R]eferences')
+          map('gI', builtin.lsp_implementations, '[G]oto [I]mplementation')
+          map('<leader>D', builtin.lsp_type_definitions, 'Type [D]efinition')
+          map('<leader>fs', builtin.lsp_document_symbols, '[F]ind [S]ymbols')
+          map('<leader>fw', builtin.lsp_dynamic_workspace_symbols, '[F]ind in [W]orkspace')
           map('<leader>r', vim.lsp.buf.rename, '[R]ename')
 
           -- Highlight references on hover
@@ -71,11 +69,8 @@ return {
         vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
         pyright = {},
         rust_analyzer = {},
-        ts_ls = {},
 
         lua_ls = {
           settings = {

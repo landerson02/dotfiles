@@ -95,3 +95,14 @@ vim.opt.updatetime = 200
 
 -- Copy keybinds
 vim.keymap.set('n', 'yc', 'yygcc', { remap = true, desc = 'Copy and comment line' })
+
+-- Change word with C
+vim.keymap.set('n', '<C-c>', 'ciw', { desc = 'which_key_ignore' })
+
+-- Remove unnecessary keybinds
+-- NOTE: needed for nvim >= 0.11
+-- vim.keymap.del('n', 'grr')
+-- vim.keymap.del('n', 'gri')
+-- vim.keymap.del('n', 'grn')
+-- vim.keymap.del('n', 'gra')
+-- vim.keymap.del('x', 'gra')
