@@ -102,4 +102,30 @@ return {
       -- configuration goes here
     },
   },
+
+  {
+    -- Make all windows transparent
+    'xiyaowong/transparent.nvim',
+    lazy = false,
+    config = function()
+      require('transparent').setup({
+        extra_groups = {
+          'NormalFloat',
+          'TeleScopeNormal',
+          'TelescopeBorder',
+          'TelescopePromptBorder',
+          'TelescopePromptTitle',
+          'WhichKeyNormal',
+          'WhichKeyBorder',
+          'NoiceSplitBorder',
+          'FloatBorder',
+          'FloatTitle',
+          'FloatFooter',
+          'LspInfoBorder',
+        },
+      })
+      require('transparent').clear_prefix('lualine')
+      require('transparent').clear_prefix('bufferline')
+    end,
+  },
 }

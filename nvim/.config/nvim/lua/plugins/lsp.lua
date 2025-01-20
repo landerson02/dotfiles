@@ -35,7 +35,7 @@ return {
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
           map('gr', builtin.lsp_references, '[G]oto [R]eferences')
           map('gI', builtin.lsp_implementations, '[G]oto [I]mplementation')
-          map('<leader>D', builtin.lsp_type_definitions, 'Type [D]efinition')
+          map('<leader>gD', builtin.lsp_type_definitions, '[G]oto [T]ype Definition')
           map('<leader>fs', builtin.lsp_document_symbols, '[F]ind [S]ymbols')
           map('<leader>fw', builtin.lsp_dynamic_workspace_symbols, '[F]ind in [W]orkspace')
           map('<leader>r', vim.lsp.buf.rename, '[R]ename')

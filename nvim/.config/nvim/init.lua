@@ -33,3 +33,6 @@ require('lazy').setup({
     },
   },
 })
+
+-- Colorscheme
+vim.cmd.colorscheme('tokyonight-moon')

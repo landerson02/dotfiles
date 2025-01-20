@@ -17,6 +17,7 @@ return {
       -- Useful for getting pretty icons, but requires a Nerd Font.
       { 'nvim-tree/nvim-web-devicons', enabled = true },
     },
+
     config = function()
       require('telescope').setup({
         extensions = {
@@ -41,13 +42,14 @@ return {
 
       -- Define mappings
       local tel = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>fd', tel.help_tags, { desc = '[F]ind [D]ocs' })
+      vim.keymap.set('n', '<leader>fh', tel.help_tags, { desc = '[F]ind [H]elp' })
+
       vim.keymap.set('n', '<leader>fk', tel.keymaps, { desc = '[F]ind [Keymaps]' })
       vim.keymap.set('n', '<leader>ff', tel.find_files, { desc = '[F]ind [F]iles' })
       vim.keymap.set('n', '<leader>fg', tel.live_grep, { desc = '[F]ind [G]rep' })
-      vim.keymap.set('n', '<leader>fh', function()
+      vim.keymap.set('n', '<leader>fd', function()
         tel.find_files({ hidden = true })
-      end, { desc = '[F]ind [H]idden' })
+      end, { desc = '[F]ind [D]ots' })
 
       vim.keymap.set('n', '<leader><leader>', function()
         require('telescope').extensions.smart_open.smart_open({
@@ -56,7 +58,7 @@ return {
           layout_strategt = 'vertical',
           layout_config = {
             height = 15,
-            width = 0.35,
+            width = 80,
           },
           previewer = false,
           results_title = false,
@@ -69,11 +71,9 @@ return {
 
       vim.keymap.set('n', '<leader>fr', tel.git_files, { desc = '[F]ind [R]ecent files' })
       vim.keymap.set('n', '<leader>fb', tel.buffers, { desc = '[F]ind buffers' })
-
       vim.keymap.set('n', '<leader>fn', function()
         tel.find_files({ cwd = vim.fn.stdpath('config') })
       end, { desc = '[F]ind [N]eovim files' })
-
       vim.keymap.set('n', '<leader>fc', function()
         tel.find_files({
           cwd = vim.fn.expand('~/dotfiles'),
