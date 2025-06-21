@@ -36,3 +36,6 @@ require('lazy').setup({
 
 -- Colorscheme
 vim.cmd.colorscheme('tokyonight-moon')
+
+-- Tmux cursor bug
+vim.cmd('au VimLeave * set guicursor=a:ver25')
