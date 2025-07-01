@@ -25,7 +25,7 @@ local volume_icon = sbar.add("item", "widgets.volume2", {
 		string = icons.volume._100,
 		width = 0,
 		align = "left",
-		color = colors.grey,
+		color = colors.transparent,
 		font = {
 			style = settings.font.style_map["Regular"],
 			size = 14.0,
@@ -44,7 +44,7 @@ local volume_icon = sbar.add("item", "widgets.volume2", {
 local volume_bracket = sbar.add("bracket", "widgets.volume.bracket", { volume_icon.name, volume_percent.name }, {
 	background = {
 		color = colors.bg1,
-		border_color = colors.rainbow[#colors.rainbow - 3],
+		border_color = colors.trans_accent,
 		border_width = 1,
 	},
 	popup = {
@@ -64,7 +64,7 @@ local volume_slider = sbar.add("slider", popup_width, {
 		background = {
 			height = 6,
 			corner_radius = 3,
-			color = colors.bg2,
+			color = colors.bg1,
 		},
 		knob = {
 			string = "􀀁",
@@ -81,6 +81,12 @@ local volume_slider = sbar.add("slider", popup_width, {
 
 volume_percent:subscribe("volume_change", function(env)
 	local volume = tonumber(env.INFO)
+	-- write to log file sketchylog "Volume changed to " .. volume
+	local file = io.open("~/sketchybar.log", "a")
+	if file then
+		file:write("Volume changed to " .. volume .. "\n")
+		file:close()
+	end
 	local icon = icons.volume._0
 	if volume > 60 then
 		icon = icons.volume._100

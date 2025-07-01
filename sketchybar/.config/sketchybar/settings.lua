@@ -8,15 +8,10 @@ return {
 		main = {
 			icon = icons.apple,
 			color = colors.white,
-			-- color = colors.rainbow[1],
-		},
-		service = {
-			icon = icons.nuke,
-			color = 0xffff9e64,
 		},
 	},
 	bar = {
-		height = 36,
+		height = 31,
 		padding = {
 			x = 10,
 			y = 0,
@@ -37,16 +32,15 @@ return {
 			return colors.white
 		end,
 		highlight_color = function(workspace)
-			return colors.red
+			return colors.accent
 		end,
 		colors = {
 			background = colors.bg1,
 		},
-		corner_radius = 6,
+		corner_radius = 9,
 	},
 
-	icons = "sketchybar-app-font:Regular:16.0", -- alternatively available: NerdFont
-	-- icons = "NerdFont", -- alternatively available: NerdFont
+	icons = "sketchybar-app-font:Regular:15.0",
 
 	font = {
 		text = "FiraCode Nerd Font Mono", -- Used for text
