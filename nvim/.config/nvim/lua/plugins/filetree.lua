@@ -17,6 +17,11 @@ return {
   end,
 
   config = function()
-    vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { desc = 'Open file [E]xplorer' })
+    vim.keymap.set(
+      'n',
+      '<leader>e',
+      ':Neotree reveal toggle<CR>',
+      { desc = 'Open file [E]xplorer' }
+    )
   end,
 }

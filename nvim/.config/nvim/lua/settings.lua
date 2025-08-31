@@ -82,6 +82,15 @@ vim.keymap.set('n', '\\', '<cmd>sp<CR>')
 vim.keymap.set('n', '<C-w>.', '10<C-w>>', { desc = 'Increase Width 10X' })
 vim.keymap.set('n', '<C-w>,', '10<C-w><', { desc = 'Decrease Width 10X' })
 
+-- override digraphs
+vim.keymap.set('i', '<C-k>', '<Del>', { noremap = true })
+
+-- Copy file path
+vim.keymap.set('n', '<leader>cp', function()
+  vim.fn.setreg('+', vim.fn.expand('%:p'))
+  print('Copied: ' .. vim.fn.expand('%:p'))
+end, { desc = 'Copy file path to clipboard' })
+
 -- Highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight on yanking text',
@@ -117,8 +126,9 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 
 -- Remove unnecessary keybinds
 -- NOTE: needed for nvim >= 0.11
--- vim.keymap.del('n', 'grr')
--- vim.keymap.del('n', 'gri')
--- vim.keymap.del('n', 'grn')
--- vim.keymap.del('n', 'gra')
--- vim.keymap.del('x', 'gra')
+vim.keymap.del('n', 'grn')
+vim.keymap.del('n', 'gra')
+vim.keymap.del('v', 'gra')
+vim.keymap.del('n', 'grr')
+vim.keymap.del('n', 'gri')
+vim.keymap.del('n', 'grt')

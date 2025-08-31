@@ -56,7 +56,9 @@ return {
       -- vim.cmd.colorscheme('catppuccin')
     end,
   },
+
   { 'morhetz/gruvbox' },
+
   {
     'folke/tokyonight.nvim',
 
@@ -66,6 +68,7 @@ return {
       })
     end,
   },
+
   {
     'rebelot/kanagawa.nvim',
 
@@ -75,6 +78,7 @@ return {
       })
     end,
   },
+
   {
     'rose-pine/neovim',
     name = 'rose-pine',
@@ -85,5 +89,9 @@ return {
         },
       })
     end,
+  },
+
+  {
+    'projekt0n/github-nvim-theme',
   },
 }

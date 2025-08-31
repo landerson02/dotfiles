@@ -20,7 +20,7 @@ return {
       timeout = 3000,
     },
     scroll = { enabled = true },
-    statuscolumn = { enabled = true },
+    statuscolumn = { enabled = false },
     words = { enabled = true },
   },
   keys = {

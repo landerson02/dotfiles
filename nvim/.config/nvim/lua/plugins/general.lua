@@ -27,6 +27,7 @@ return {
 
       vim.keymap.set('n', '<leader>gd', function()
         gs.diffthis()
+        vim.cmd('wincmd h')
       end, { desc = 'Diff this file' })
     end,
   },
@@ -48,20 +49,6 @@ return {
       vim.keymap.set('n', '<leader>gb', function()
         vim.cmd('BlameToggle')
       end, { desc = 'Toggle [B]lame' })
-    end,
-  },
-
-  {
-    'OXY2DEV/markview.nvim',
-    lazy = false,
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'nvim-tree/nvim-web-devicons',
-    },
-    config = function()
-      require('markview').setup({
-        hybrid_modes = { 'n' },
-      })
     end,
   },
 
@@ -90,20 +77,6 @@ return {
   },
 
   {
-    'kawre/leetcode.nvim',
-    -- build = ':TSUpdate html', -- if you have `nvim-treesitter` installed
-    dependencies = {
-      'nvim-telescope/telescope.nvim',
-      -- "ibhagwan/fzf-lua",
-      'nvim-lua/plenary.nvim',
-      'MunifTanjim/nui.nvim',
-    },
-    opts = {
-      -- configuration goes here
-    },
-  },
-
-  {
     -- Make all windows transparent
     'xiyaowong/transparent.nvim',
     lazy = false,
@@ -124,8 +97,44 @@ return {
           'LspInfoBorder',
         },
       })
-      require('transparent').clear_prefix('lualine')
       require('transparent').clear_prefix('bufferline')
     end,
   },
+
+  {
+    'kawre/leetcode.nvim',
+    -- build = ':TSUpdate html', -- if you have `nvim-treesitter` installed
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      -- "ibhagwan/fzf-lua",
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
+    },
+    opts = {
+      lang = 'python3',
+      injector = {
+        ['python3'] = {
+          before = true,
+        },
+      },
+    },
+  },
+
+  {
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    build = 'cd app && npm install',
+    init = function()
+      vim.g.mkdp_filetypes = { 'markdown' }
+    end,
+    ft = { 'markdown' },
+  },
+
+  -- NOTE: Too buggy for now check back in the future
+  -- {
+  --   'nvzone/typr',
+  --   dependencies = 'nvzone/volt',
+  --   opts = {},
+  --   cmd = { 'Typr', 'TyprStats' },
+  -- },
 }

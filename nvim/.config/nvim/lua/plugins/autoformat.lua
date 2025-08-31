@@ -9,8 +9,13 @@ return {
     --     lsp_fallback = not disable_filetypes[vim.bo[buf].filetype],
     --   }
     -- end,
-    format_after_save = function (bufnr)
-      return { timeout_ms = 500, lsp_fallback = true, async = true }
+    format_after_save = function(buf)
+      local disable_filetypes = { c = true, cpp = true, python = true }
+      return {
+        timeout_ms = 500,
+        lsp_fallback = not disable_filetypes[vim.bo[buf].filetype],
+        async = true,
+      }
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
@@ -18,7 +23,7 @@ return {
       typescript = { 'prettier' },
       javascriptreact = { 'prettier' },
       typescriptreact = { 'prettier' },
-      python = { 'isort', 'black' },
+      python = { 'black' },
     },
   },
 }

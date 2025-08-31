@@ -36,6 +36,9 @@ keybind = super+t=text:\x01\x63
 # close pane
 keybind = super+w=text:\x01\x78
 
+# detach
+keybind = super+d=text:\x01\x64
+
 # rename window
 keybind = super+r=text:\x01\x2c
 
@@ -49,3 +52,6 @@ keybind = super+'=text:\x01\x7c
 
 # pane zoom
 keybind = super+z=text:\x01\x7a
+
+# Clearing
+keybind = super+l=text:\x01\x0c

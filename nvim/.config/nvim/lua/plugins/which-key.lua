@@ -7,6 +7,7 @@ return {
       { '<leader>f', group = 'find' },
       { '<leader>g', group = 'git' },
       { '<leader>u', group = 'toggle' },
+      { '<leader>c', group = 'copy' },
     })
   end,
 }

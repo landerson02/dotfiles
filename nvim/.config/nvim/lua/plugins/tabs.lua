@@ -20,7 +20,7 @@ return {
     map('n', '<leader>>', '<cmd>BufferLineMoveNext<CR>', key_opts)
     map('n', '<leader>,', '<cmd>BufferLineCyclePrev<CR>', key_opts)
     map('n', '<leader><', '<cmd>BufferLineMovePrev<CR>', key_opts)
-    map('n', '<leader>x', '<cmd>bd<CR>', key_opts)
+    map('n', '<leader>x', '<cmd>b#|bd#<CR>', key_opts)
 
     for i = 1, 9 do
       map('n', '<leader>' .. i, '<cmd>BufferLineGoToBuffer ' .. i .. '<CR>', key_opts)
