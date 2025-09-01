@@ -1,3 +1,5 @@
+local utils = require('utils')
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -104,6 +106,17 @@ vim.opt.updatetime = 200
 
 -- Copy keybinds
 vim.keymap.set('n', 'yc', 'yygcc', { remap = true, desc = 'Copy and comment line' })
+
+-- Toggle react comment
+vim.keymap.set('x', 'gr', function()
+  local srow = vim.fn.line('v')
+  local erow = vim.fn.line('.')
+  if srow > erow then
+    srow, erow = erow, srow
+  end
+  vim.cmd('normal! \\<Esc>')
+  utils.toggle_react_comment_range(srow, erow)
+end, { desc = 'Toggle React comment' })
 
 -- Change word with C
 vim.keymap.set('n', '<C-c>', 'ciw', { desc = 'which_key_ignore' })
