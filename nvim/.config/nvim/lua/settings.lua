@@ -124,8 +124,6 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
--- Remove unnecessary keybinds
--- NOTE: needed for nvim >= 0.11
 vim.keymap.del('n', 'grn')
 vim.keymap.del('n', 'gra')
 vim.keymap.del('v', 'gra')

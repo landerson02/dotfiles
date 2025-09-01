@@ -15,10 +15,8 @@ return {
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-
       { 'j-hui/fidget.nvim', opts = {} },
-
-      'hrsh7th/cmp-nvim-lsp',
+      'saghen/blink.cmp',
     },
     config = function()
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -35,7 +33,7 @@ return {
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
           map('gr', builtin.lsp_references, '[G]oto [R]eferences')
           map('gI', builtin.lsp_implementations, '[G]oto [I]mplementation')
-          map('<leader>gD', builtin.lsp_type_definitions, '[G]oto [T]ype Definition')
+          map('gt', builtin.lsp_type_definitions, '[G]oto [T]ype Definition')
           map('<leader>fs', builtin.lsp_document_symbols, '[F]ind [S]ymbols')
           map('<leader>fw', builtin.lsp_dynamic_workspace_symbols, '[F]ind in [W]orkspace')
           map('<leader>r', vim.lsp.buf.rename, '[R]ename')
@@ -64,14 +62,12 @@ return {
       end
       vim.diagnostic.config({ signs = { text = diagnostic_signs } })
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities =
-        vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
 
       local servers = {
-        pyright = {},
         rust_analyzer = {},
-
+        ts_ls = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -87,20 +83,41 @@ return {
       require('mason').setup()
 
       local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua',
-      })
+      vim.list_extend(ensure_installed, {})
       require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
+
+      require('lspconfig').basedpyright.setup({
+        settings = {
+          basedpyright = {
+            analysis = {
+              -- typeCheckingMode = 'basic', -- standard, strict, all, off, basic
+              typeCheckingMode = 'off', -- standard, strict, all, off, basic
+              autoSearchPaths = true,
+              autoImportCompletions = true,
+              -- diagnosticMode = 'workspace',
+              useLibraryCodeForTypes = true,
+            },
+          },
+        },
+      })
 
       require('mason-lspconfig').setup({
         handlers = {
           function(server_name)
+            -- Avoid re-setting up if already active
+            for _, client in pairs(vim.lsp.get_clients()) do
+              if client.name == server_name then
+                return
+              end
+            end
             local server = servers[server_name] or {}
             server.capabilities =
               vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
         },
+        ensure_installed = ensure_installed,
+        automatic_enable = true,
       })
     end,
   },
