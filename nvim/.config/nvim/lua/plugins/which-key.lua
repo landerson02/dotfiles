@@ -8,6 +8,7 @@ return {
       { '<leader>g', group = 'git' },
       { '<leader>u', group = 'toggle' },
       { '<leader>c', group = 'copy' },
+      { '<leader>t', group = 'test' },
     })
   end,
 }
